@@ -16,8 +16,11 @@ public class TradeVolTypeNotifictaion extends Notification {
     }
 
     public TradeVolTypeNotifictaion(TradeVolTypeNotifictaion notification) {
-        super();
+        super(notification);
         this.btcPrice = notification.btcPrice;
+        this.tradeVol = notification.tradeVol;
+        this.todayHigh = notification.todayHigh;
+        this.marketCap = notification.marketCap;
     }
 
     public int getBtcPrice() {

@@ -7,8 +7,7 @@ public class NotificationService {
 
     private Notification notification;
 
-    public NotificationService(Notification notification) {
-        this.notification = notification;
+    public NotificationService() {
     }
 
     public Notification getNotification() {
@@ -19,8 +18,9 @@ public class NotificationService {
         this.notification = notification;
     }
 
-    public Notification create(int btcPrice, int tradeVol, int todayHigh, int marketCap) {
-        return new TradeVolTypeNotifictaion(btcPrice, tradeVol, todayHigh, marketCap);
+    public void create(int btcPrice, int tradeVol, int todayHigh, int marketCap) {
+        TradeVolTypeNotifictaion tradeVolTypeNotifictaion = new TradeVolTypeNotifictaion(btcPrice, tradeVol, todayHigh, marketCap);
+        setNotification(tradeVolTypeNotifictaion);
     }
 
 }

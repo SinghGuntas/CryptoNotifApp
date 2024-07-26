@@ -1,4 +1,9 @@
 package org.example.exceptions;
 
-public class NotificationNotFound {
+import org.example.model.Notification;
+
+public class NotificationNotFound extends Exception {
+    public NotificationNotFound() {
+        super("Notif not found");
+    }
 }

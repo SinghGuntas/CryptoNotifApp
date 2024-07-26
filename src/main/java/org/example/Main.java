@@ -1,8 +1,38 @@
 package org.example;
 
+import org.example.enums.NotificationStatus;
+import org.example.exceptions.NotificationAlreadySentException;
+import org.example.exceptions.NotificationNotFound;
+import org.example.model.Notification;
+import org.example.model.User;
+import org.example.service.NotificationService;
+import org.example.service.PublisherService;
+import org.example.service.SubscriberService;
+import org.example.service.SystemService;
+
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
 
+
+
+        NotificationService notificationService = new NotificationService();
+        PublisherService publisherService = new PublisherService();
+        SubscriberService subscriberService = new SubscriberService();
+        SystemService systemService = new SystemService(notificationService, publisherService, subscriberService);
+
+//      Creates notification once and saves it
+        notificationService.create(1, 2, 3, 4);
+
+        User user = new User("123", "guntas@gmail.com");
+        subscriberService.addSubscriber(user);
+        systemService.send();
+        List<Notification> notifications = systemService.list(NotificationStatus.SENT);
+
+        for(Notification notification : notifications) {
+            System.out.println(notification.getMessage().getText());
+        }
 
     }
 }

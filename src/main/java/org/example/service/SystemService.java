@@ -1,17 +1,20 @@
 package org.example.service;
 
+import org.example.enums.NotificationStatus;
+import org.example.exceptions.NotificationAlreadySentException;
+import org.example.exceptions.NotificationNotFound;
 import org.example.model.Notification;
 import org.example.model.Subscriber;
 import org.example.model.TradeVolTypeNotifictaion;
 
 import java.util.List;
 
-public class System {
+public class SystemService {
     private final NotificationService notificationService;
     private final PublisherService publisherService;
     private final SubscriberService subscriberService;
 
-    public System(NotificationService notificationService, PublisherService publisherService, SubscriberService subscriberService) {
+    public SystemService(NotificationService notificationService, PublisherService publisherService, SubscriberService subscriberService) {
         this.notificationService = notificationService;
         this.publisherService = publisherService;
         this.subscriberService = subscriberService;
@@ -24,12 +27,12 @@ public class System {
         }
     }
 
-    public void delete(Notification notification) {
-        publisherService.
+    public void delete(Notification notification) throws NotificationAlreadySentException, NotificationNotFound {
+        publisherService.removeNotification(notification);
     }
 
-    public List<Notification> list() {
-
+    public List<Notification> list(NotificationStatus notificationStatus) {
+        return publisherService.list(notificationStatus);
     }
 
 }
